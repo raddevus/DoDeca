@@ -1,10 +1,13 @@
-﻿namespace DoDeca.Tests;
+﻿using Models.NewLibre;
 
-public class UnitTest1
+namespace DoDeca.Tests;
+
+public class FinderTests
 {
     [Fact]
-    public void Test1()
+    public void DisplayFilesTest()
     {
-
+      Finder f = new();
+      f.GetFileInfo(".");
     }
 }
