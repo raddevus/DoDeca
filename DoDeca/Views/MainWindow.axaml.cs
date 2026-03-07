@@ -3,6 +3,9 @@ using Avalonia.Input;
 using Avalonia.Controls;
 using Avalonia.Interactivity;  // Adds items necessary for event handlers
 using System;
+using System.Text.Json;
+using System.Collections.Generic;
+using Models.NewLibre;
 
 namespace DoDeca.Views;
 
@@ -16,8 +19,14 @@ public partial class MainWindow : Window
     protected override void OnOpened(EventArgs e){
        base.OnOpened(e);
        QuickLinksLB.Items.Add("test");
-       for (int i = 1; i < 30; i++){
-          QuickLinksLB.Items.Add($"Sample {i} - long test");
+       Finder f = new();
+       var specFolders = f.GetSpecialFolders();
+Console.WriteLine($"{specFolders}");
+       var fd = JsonSerializer.Deserialize<List<FolderData>>(specFolders);
+       Console.WriteLine($"fd {fd.GetType()}");
+       foreach (var fx in fd){
+          Console.WriteLine($"foldernaem: {fx.folderName}");
+          QuickLinksLB.Items.Add($"{fx.folderName}");
        }
     }
     
@@ -80,3 +89,6 @@ private void OnSplitterDragCompleted()
       } */
    } 
 }
+// NOTE: When deserializing from JSON & using a record
+// the property names much match case in the JSON
+public record FolderData(string folderName, string folderPath);
