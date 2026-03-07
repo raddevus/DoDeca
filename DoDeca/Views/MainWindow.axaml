@@ -16,7 +16,8 @@
     </Design.DataContext>
    <SplitView IsPaneOpen="True"
               DisplayMode="Inline"
-              OpenPaneLength="300">
+              OpenPaneLength="300"
+              Name="OpenPane">
        <SplitView.Pane>
            <TextBlock Text="Pane"
                       FontSize="24"
@@ -29,6 +30,7 @@
                       FontSize="24"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"/>
+         <Button Click="MakeBigger" Content="Make Bigger"/>
        </Grid>
    </SplitView>
 
