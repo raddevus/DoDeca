@@ -20,12 +20,19 @@
     <Border x:Name="NavPane"
             Grid.Column="0"
             MinWidth="100"
-            Background="#eeeeee"/>
+            Background="#eeeeee">
+               <ListBox x:Name="QuickLinksLB"
+               SelectionMode="Single"
+               />
+            </Border>
 
     <GridSplitter Grid.Column="1"
                   Width="4"
                   Background="Gray"
                   ResizeDirection="Columns"
+                  DragStarted="OnSplitterDragStarted"
+              DragCompleted="OnSplitterDragCompleted"
+                  DragDelta="OnSplitterDragDelta"
                   ResizeBehavior="PreviousAndNext"
                   Cursor="SizeWestEast"/>
 
