@@ -32,7 +32,7 @@
                       FontSize="24"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"/>
-         <Button Click="MakeBigger" Content="Make Bigger"/>
+         <Button Name="ChangeSize" Click="MakeBigger" Content="Make Bigger"/>
        </Grid>
    </SplitView>
 

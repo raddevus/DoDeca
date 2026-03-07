@@ -23,11 +23,15 @@ public partial class MainWindow : Window
        if (e.Key == Key.LeftCtrl)
        {
           isCtrlDown = true;
+          ChangeSize.Content = "Make Smaller";
            Console.WriteLine("Control key pressed");
        }
    }
 
    private void Window_KeyUp(object? sender, KeyEventArgs e){
-      if (e.Key == Key.LeftCtrl){ isCtrlDown = false;}
+      if (e.Key == Key.LeftCtrl){ 
+         isCtrlDown = false;
+         ChangeSize.Content = "Make Bigger";
+      }
    }
 }
