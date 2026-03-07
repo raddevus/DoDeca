@@ -16,24 +16,19 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-   <SplitView IsPaneOpen="True"
-              DisplayMode="Inline"
-              OpenPaneLength="300"
-              Name="OpenPane">
-       <SplitView.Pane>
-           <TextBlock Text="Pane"
-                      FontSize="24"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center"/>
-       </SplitView.Pane>
+    <Grid ColumnDefinitions="Auto,4,*">
+    <Border x:Name="NavPane"
+            Grid.Column="0"
+            MinWidth="100"
+            Background="#eeeeee"/>
 
-       <Grid>
-           <TextBlock Text="Content"
-                      FontSize="24"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center"/>
-         <Button Name="ChangeSize" Click="MakeBigger" Content="Make Bigger"/>
-       </Grid>
-   </SplitView>
+    <GridSplitter Grid.Column="1"
+                  Width="4"
+                  Background="Gray"
+                  ResizeDirection="Columns"
+                  ResizeBehavior="PreviousAndNext"
+                  Cursor="SizeWestEast"/>
 
+    <Grid Grid.Column="2"/>
+</Grid>
 </Window>
