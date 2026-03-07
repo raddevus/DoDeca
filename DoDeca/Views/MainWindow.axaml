@@ -14,7 +14,22 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+   <SplitView IsPaneOpen="True"
+              DisplayMode="Inline"
+              OpenPaneLength="300">
+       <SplitView.Pane>
+           <TextBlock Text="Pane"
+                      FontSize="24"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+       </SplitView.Pane>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+       <Grid>
+           <TextBlock Text="Content"
+                      FontSize="24"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+       </Grid>
+   </SplitView>
 
 </Window>
