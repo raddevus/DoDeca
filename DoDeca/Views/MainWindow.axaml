@@ -7,6 +7,8 @@
         x:Class="DoDeca.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
+        KeyDown="Window_KeyDown"
+        KeyUp="Window_KeyUp"
         Title="DoDeca">
 
     <Design.DataContext>
