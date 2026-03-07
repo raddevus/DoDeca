@@ -16,6 +16,9 @@ public partial class MainWindow : Window
     protected override void OnOpened(EventArgs e){
        base.OnOpened(e);
        QuickLinksLB.Items.Add("test");
+       for (int i = 1; i < 30; i++){
+          QuickLinksLB.Items.Add($"Sample {i} - long test");
+       }
     }
     
 /*   private async void MakeBigger(object? sender, RoutedEventArgs e){
