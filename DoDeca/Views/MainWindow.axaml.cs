@@ -26,9 +26,14 @@ Console.WriteLine($"{specFolders}");
        Console.WriteLine($"fd {fd.GetType()}");
        foreach (var fx in fd){
           Console.WriteLine($"foldername: {fx.folderName}");
-          QuickLinksLB.Items.Add(fx.folderName);
+          QuickLinksLB.Items.Add(fx);
        }
     }
+
+    private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
+       Console.WriteLine(((sender as ListBox)?.SelectedItem as FolderData)?.folderPath);
+    }
+       
     
 /*   private async void MakeBigger(object? sender, RoutedEventArgs e){
       if (isCtrlDown){ OpenNavPane.OpenNavPaneLength -= 10; return;}

@@ -23,6 +23,7 @@
             Background="#eeeeee">
                <ListBox x:Name="QuickLinksLB"
                SelectionMode="Single"
+               SelectionChanged="QuickLinkChanged"
                />
             </Border>
 
