@@ -32,8 +32,9 @@ Console.WriteLine($"{specFolders}");
     }
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
-       Console.WriteLine($"{(sender as TreeViewItem)}");
+       Console.WriteLine($"{(sender as TreeView)?.SelectedItem as Folder}");
     }
+
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
 
        var vm = (MainWindowViewModel)DataContext;

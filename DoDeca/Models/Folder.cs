@@ -17,4 +17,8 @@ public class Folder
       Title = title;
       SubItems = subItem;
   }
+
+  public override string ToString(){
+     return Title;
+  }
 }
