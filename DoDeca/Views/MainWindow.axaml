@@ -39,9 +39,9 @@
                   Cursor="SizeWestEast"/>
 
     <Grid Grid.Column="2">
-       <TreeView ItemsSource="{Binding Folders}">
+       <TreeView ItemsSource="{Binding Folders}" SelectionChanged="TviClick">
         <TreeView.ItemTemplate>
-          <TreeDataTemplate ItemsSource="{Binding SubItems}">
+          <TreeDataTemplate ItemsSource="{Binding SubItems}" >
             <TextBlock Text="{Binding Title}"/>
           </TreeDataTemplate>
         </TreeView.ItemTemplate>
