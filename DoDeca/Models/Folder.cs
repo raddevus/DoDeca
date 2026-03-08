@@ -4,7 +4,7 @@ namespace Models.NewLibre;
 
 public class Folder
 {
-  public ObservableCollection<Folder>? SubItems { get; }
+  public ObservableCollection<Folder>? SubItems { get; } = new();
   public string Title { get; }
 
   public Folder(string title)
