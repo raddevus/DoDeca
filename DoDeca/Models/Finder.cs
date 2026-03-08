@@ -20,6 +20,7 @@ public class Finder{
        Console.WriteLine($"file => {entry.Name}"); 
        
     }
+      allDirs.Sort();
       return allDirs;
    }
        public String GetSpecialFolders(){

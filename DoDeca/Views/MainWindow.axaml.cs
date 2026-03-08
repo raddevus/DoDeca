@@ -20,7 +20,6 @@ public partial class MainWindow : Window
 
     protected override void OnOpened(EventArgs e){
        base.OnOpened(e);
-       QuickLinksLB.Items.Add("test");
        Finder f = new();
        var specFolders = f.GetSpecialFolders();
 Console.WriteLine($"{specFolders}");
