@@ -42,7 +42,10 @@ Console.WriteLine($"{specFolders}");
           var allDirs = f.GetFileInfo(targetPath);
           foreach (string fn in allDirs){
             Console.WriteLine(fn);
-            targetFolder.SubItems.Add(new Folder(fn));
+            var folder = new Folder(fn);
+            if (!targetFolder.SubItems.Contains(folder)){
+               targetFolder.SubItems.Add(new Folder(fn));
+            }
           }
        }
        catch (Exception ex){
