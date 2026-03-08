@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Models.NewLibre;
 using System.Collections.ObjectModel;
 using DoDeca.ViewModels;
+using System.IO;
 
 namespace DoDeca.Views;
 
@@ -32,7 +33,20 @@ Console.WriteLine($"{specFolders}");
     }
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
-       Console.WriteLine($"{(sender as TreeView)?.SelectedItem as Folder}");
+       var targetFolder = (sender as TreeView)?.SelectedItem as Folder;
+       Console.WriteLine($"{targetFolder}");
+       var targetPath = Path.Combine((QuickLinksLB.SelectedItem as FolderData).folderPath,targetFolder.ToString()); 
+       Console.WriteLine($"targetPath: {targetPath}");
+       Finder f = new();
+       try{
+          var allDirs = f.GetFileInfo(targetPath);
+          foreach (string fn in allDirs){
+            Console.WriteLine(fn);
+          }
+       }
+       catch (Exception ex){
+          Console.WriteLine($"Error: {targetPath}: {ex.Message}");
+       }
     }
 
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
