@@ -17,35 +17,49 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid ColumnDefinitions="Auto,4,*">
-    <Border x:Name="NavPane"
-            Grid.Column="0"
-            MinWidth="100"
-            Background="#eeeeee">
-               <ListBox x:Name="QuickLinksLB"
-               SelectionMode="Single"
-               SelectionChanged="QuickLinkChanged"
-               />
-            </Border>
+    <Grid>
+    <!-- Define rows for the grid -->
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/> <!-- For the panel -->
+        <RowDefinition Height="*"/>  <!-- For the existing content -->
+    </Grid.RowDefinitions>
 
-    <GridSplitter Grid.Column="1"
-                  Width="4"
-                  Background="Gray"
-                  ResizeDirection="Columns"
-                  DragStarted="OnSplitterDragStarted"
-              DragCompleted="OnSplitterDragCompleted"
-                  DragDelta="OnSplitterDragDelta"
-                  ResizeBehavior="PreviousAndNext"
-                  Cursor="SizeWestEast"/>
+    <!-- New panel for the TextBox and Label -->
+    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+        <Label Content="Go:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+        <TextBox Width="400" Name="NavPathTB" KeyDown="OnTextBoxKeyDown" />
+    </StackPanel>
 
-    <Grid Grid.Column="2">
-       <TreeView ItemsSource="{Binding Folders}" SelectionChanged="TviClick">
-        <TreeView.ItemTemplate>
-          <TreeDataTemplate ItemsSource="{Binding SubItems}" >
-            <TextBlock Text="{Binding Title}"/>
-          </TreeDataTemplate>
-        </TreeView.ItemTemplate>
-      </TreeView>
+    <!-- Original Grid with SplitterGrid -->
+    <Grid Grid.Row="1" ColumnDefinitions="Auto,4,*">
+        <Border x:Name="NavPane"
+                Grid.Column="0"
+                MinWidth="100"
+                Background="#eeeeee">
+            <ListBox x:Name="QuickLinksLB"
+                     SelectionMode="Single"
+                     SelectionChanged="QuickLinkChanged"/>
+        </Border>
+
+        <GridSplitter Grid.Column="1"
+                      Width="4"
+                      Background="Gray"
+                      ResizeDirection="Columns"
+                      DragStarted="OnSplitterDragStarted"
+                      DragCompleted="OnSplitterDragCompleted"
+                      DragDelta="OnSplitterDragDelta"
+                      ResizeBehavior="PreviousAndNext"
+                      Cursor="SizeWestEast"/>
+
+        <Grid Grid.Column="2">
+            <TreeView ItemsSource="{Binding Folders}" SelectionChanged="TviClick">
+                <TreeView.ItemTemplate>
+                    <TreeDataTemplate ItemsSource="{Binding SubItems}">
+                        <TextBlock Text="{Binding Title}"/>
+                    </TreeDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Grid>
     </Grid>
 </Grid>
 </Window>

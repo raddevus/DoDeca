@@ -31,6 +31,38 @@ Console.WriteLine($"{specFolders}");
           QuickLinksLB.Items.Add(fx);
        }
     }
+   private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+   {
+       // Check if the Enter key was pressed
+       if (e.Key == Key.Enter)
+       {
+           // Call the function you want to run
+           NavigateToPath();
+           // Optionally, you may want to suppress the key press event
+           // e.Handled = true;
+       }
+   }
+    private void NavigateToPath(){
+       var targetPath = NavPathTB.Text; 
+
+      Folder targetFolder = new(targetPath); 
+       Console.WriteLine($"targetPath: {targetPath}");
+       Finder f = new();
+       try{
+          var allDirs = f.GetFileInfo(targetPath);
+          foreach (string fn in allDirs){
+            Console.WriteLine(fn);
+            var folder = new Folder(fn);
+            if (!targetFolder.SubItems.Contains(folder)){
+               Console.WriteLine($"Has {targetFolder.SubItems.Count}. It doesn't contain folder!?");
+               targetFolder.SubItems.Add(folder);
+            }
+          }
+       }
+       catch (Exception ex){
+          Console.WriteLine($"Error: : {ex.Message}");
+       }
+    }
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
        var targetFolder = (sender as TreeView)?.SelectedItem as Folder;
