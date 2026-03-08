@@ -6,16 +6,21 @@ using System.IO;
 namespace Models.NewLibre;
 public class Finder{
    
-   public void GetFileInfo(string targetPath){
+   public List<string> GetFileInfo(string targetPath){
       DirectoryInfo di = new(targetPath);
+      List<string> allDirs = new();
       foreach (FileSystemInfo entry in di.EnumerateFileSystemInfos()) 
      { 
        if (entry.Attributes == FileAttributes.Directory) 
-       { 
+       {
+          allDirs.Add(entry.Name);
+
            Console.WriteLine($"dir =>  {entry.Name}"); continue; 
         } 
        Console.WriteLine($"file => {entry.Name}"); 
+       
     }
+      return allDirs;
    }
        public String GetSpecialFolders(){
         Environment.SpecialFolder[] allSpecialFolders = (Environment.SpecialFolder[])Enum.GetValues(typeof(Environment.SpecialFolder));

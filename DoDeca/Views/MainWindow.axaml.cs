@@ -6,6 +6,8 @@ using System;
 using System.Text.Json;
 using System.Collections.Generic;
 using Models.NewLibre;
+using System.Collections.ObjectModel;
+using DoDeca.ViewModels;
 
 namespace DoDeca.Views;
 
@@ -31,11 +33,16 @@ Console.WriteLine($"{specFolders}");
     }
 
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
+
+       var vm = (MainWindowViewModel)DataContext;
+       vm.Folders.Clear();
       string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
        Console.WriteLine(path);
        Finder f = new();
-       f.GetFileInfo(path);
-      
+       var allDirs = f.GetFileInfo(path);
+       foreach (string fn in allDirs){
+          vm.Folders.Add(new Folder(fn));
+       }
     }
        
     
