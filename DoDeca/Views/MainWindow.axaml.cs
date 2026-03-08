@@ -31,7 +31,11 @@ Console.WriteLine($"{specFolders}");
     }
 
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
-       Console.WriteLine(((sender as ListBox)?.SelectedItem as FolderData)?.folderPath);
+      string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
+       Console.WriteLine(path);
+       Finder f = new();
+       f.GetFileInfo(path);
+      
     }
        
     
