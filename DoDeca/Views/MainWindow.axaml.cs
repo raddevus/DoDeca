@@ -44,7 +44,8 @@ Console.WriteLine($"{specFolders}");
             Console.WriteLine(fn);
             var folder = new Folder(fn);
             if (!targetFolder.SubItems.Contains(folder)){
-               targetFolder.SubItems.Add(new Folder(fn));
+               Console.WriteLine($"Has {targetFolder.SubItems.Count}. It doesn't contain folder!?");
+               targetFolder.SubItems.Add(folder);
             }
           }
        }
