@@ -32,7 +32,10 @@ public class Finder{
             if (!String.IsNullOrEmpty(folderPath)){
                 var key = Enum.GetName(typeof(Environment.SpecialFolder), folder);
                 Console.WriteLine($"key: {key}, folderPath: {folderPath}");
-                specialFoldersOut.Add(new {folderName=key, folderPath=folderPath});
+                var newItem = new {folderName=key, folderPath=folderPath};
+                if (!specialFoldersOut.Contains(newItem)){
+                   specialFoldersOut.Add(newItem);
+                }
             }
         }
         return JsonSerializer.Serialize(specialFoldersOut);
