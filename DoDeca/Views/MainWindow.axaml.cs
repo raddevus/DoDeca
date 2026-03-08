@@ -43,26 +43,20 @@ Console.WriteLine($"{specFolders}");
        }
    }
     private void NavigateToPath(){
-       var targetPath = NavPathTB.Text; 
-
-      Folder targetFolder = new(targetPath); 
-       Console.WriteLine($"targetPath: {targetPath}");
-       Finder f = new();
-       try{
-          var allDirs = f.GetFileInfo(targetPath);
-          foreach (string fn in allDirs){
-            Console.WriteLine(fn);
-            var folder = new Folder(fn);
-            if (!targetFolder.SubItems.Contains(folder)){
-               Console.WriteLine($"Has {targetFolder.SubItems.Count}. It doesn't contain folder!?");
-               targetFolder.SubItems.Add(folder);
-            }
-          }
-       }
-       catch (Exception ex){
-          Console.WriteLine($"Error: : {ex.Message}");
-       }
+      TraversePath(NavPathTB.Text);
     }
+
+   private void TraversePath(string path){
+
+       var vm = (MainWindowViewModel)DataContext;
+       vm.Folders.Clear();
+       Console.WriteLine(path);
+       Finder f = new();
+       var allDirs = f.GetFileInfo(path);
+       foreach (string fn in allDirs){
+          vm.Folders.Add(new Folder(fn));
+       }
+   }
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
        var targetFolder = (sender as TreeView)?.SelectedItem as Folder;
@@ -87,16 +81,9 @@ Console.WriteLine($"{specFolders}");
     }
 
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
-
-       var vm = (MainWindowViewModel)DataContext;
-       vm.Folders.Clear();
       string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
-       Console.WriteLine(path);
-       Finder f = new();
-       var allDirs = f.GetFileInfo(path);
-       foreach (string fn in allDirs){
-          vm.Folders.Add(new Folder(fn));
-       }
+      if (path == string.Empty){return;}
+      TraversePath(path);
     }
        
     
