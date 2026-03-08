@@ -45,7 +45,7 @@ Console.WriteLine($"{specFolders}");
           }
        }
        catch (Exception ex){
-          Console.WriteLine($"Error: {targetPath}: {ex.Message}");
+          Console.WriteLine($"Error: : {ex.Message}");
        }
     }
 
