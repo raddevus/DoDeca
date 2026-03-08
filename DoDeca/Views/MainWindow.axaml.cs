@@ -25,8 +25,8 @@ Console.WriteLine($"{specFolders}");
        var fd = JsonSerializer.Deserialize<List<FolderData>>(specFolders);
        Console.WriteLine($"fd {fd.GetType()}");
        foreach (var fx in fd){
-          Console.WriteLine($"foldernaem: {fx.folderName}");
-          QuickLinksLB.Items.Add($"{fx.folderName}");
+          Console.WriteLine($"foldername: {fx.folderName}");
+          QuickLinksLB.Items.Add(fx.folderName);
        }
     }
     
@@ -91,4 +91,15 @@ private void OnSplitterDragCompleted()
 }
 // NOTE: When deserializing from JSON & using a record
 // the property names much match case in the JSON
-public record FolderData(string folderName, string folderPath);
+public class FolderData{
+   public string folderName{get;set;}
+   public string folderPath{get;set;}
+   public FolderData(){} 
+   public FolderData(string name, string path){
+      folderName = name;
+      folderPath = path;
+   }
+   public override string ToString(){
+      return folderName;
+   }
+}
