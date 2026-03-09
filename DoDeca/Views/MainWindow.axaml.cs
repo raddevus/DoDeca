@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Input;
 using Avalonia.Controls;
 using Avalonia.Interactivity;  // Adds items necessary for event handlers
+using Avalonia.VisualTree;
 using System;
 using System.Text.Json;
 using System.Collections.Generic;
@@ -17,6 +18,12 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        FileTree.AddHandler(InputElement.PointerPressedEvent,
+             OnTreePointerPressed, RoutingStrategies.Tunnel);
+        FileTree.AddHandler(
+    InputElement.PointerReleasedEvent,
+    (_, e) => Console.WriteLine($"PointerReleased handled={e.Handled} source={e.Source}"),
+    RoutingStrategies.Bubble); 
     }
 
     protected override void OnOpened(EventArgs e){
@@ -31,6 +38,38 @@ Console.WriteLine($"{specFolders}");
           QuickLinksLB.Items.Add(fx);
        }
     }
+
+    private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
+   {
+      e.Handled = false;
+       // Find the TreeViewItem that was clicked
+       var treeViewItem = (e.Source as Visual)?.FindAncestorOfType<TreeViewItem>();
+       if (treeViewItem == null)
+           return;
+
+       var data = treeViewItem.DataContext;
+       int depth = GetNodeDepth(treeViewItem);
+
+
+       Console.WriteLine($"Clicked node: {data}, depth: {depth}");
+   }
+
+private int GetNodeDepth(TreeViewItem item)
+   {
+       int depth = 0;
+       Visual? parent = item;
+
+       while (true)
+       {
+           parent = parent.FindAncestorOfType<TreeViewItem>();
+           if (parent == null)
+               break;
+
+           depth++;
+       }
+
+       return depth;
+   }
    private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
    {
        // Check if the Enter key was pressed
