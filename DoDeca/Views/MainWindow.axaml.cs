@@ -45,6 +45,9 @@ Console.WriteLine($"{specFolders}");
    string currentPath = string.Empty;
     private void NavigateToPath(){
        currentPath = NavPathTB.Text;
+       if (!Directory.Exists(currentPath)){
+          return;
+       }
       TraversePath(currentPath);
     }
 
