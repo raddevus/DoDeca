@@ -119,6 +119,7 @@ private int GetNodeDepth(TreeViewItem item)
        currentPath = targetPath;
        Console.WriteLine($"targetPath: {targetPath}");
        Finder f = new();
+       NavPathTB.Text = currentPath = targetPath;
        try{
           var allDirs = f.GetFileInfo(targetPath);
           foreach (string fn in allDirs){
@@ -138,7 +139,7 @@ private int GetNodeDepth(TreeViewItem item)
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
       string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
       if (path == string.Empty){return;}
-      currentPath = path;
+      NavPathTB.Text = currentPath = path;
       TraversePath(currentPath);
     }
        
