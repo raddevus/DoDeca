@@ -16,7 +16,8 @@ namespace DoDeca.Views;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+   string rootPath = string.Empty;
+   public MainWindow()
     {
         InitializeComponent();
         FileTree.AddHandler(InputElement.PointerPressedEvent,
@@ -89,7 +90,7 @@ private int GetNodeDepth(TreeViewItem item)
    string currentPath = string.Empty;
 
     private void NavigateToPath(){
-       currentPath = NavPathTB.Text;
+       rootPath = currentPath = NavPathTB.Text;
        if (!Directory.Exists(currentPath)){
           return;
        }
@@ -113,7 +114,14 @@ private int GetNodeDepth(TreeViewItem item)
        var parentFolder = targetFolder;
        Console.WriteLine($"{targetFolder}");
        var targetPath = string.Empty;
-       if (!currentPath.Contains(targetFolder.ToString())){
+       var allPathParts = currentPath.Split(Path.DirectorySeparatorChar);
+       var isAlreadyUsed = false;
+       foreach (string s in allPathParts){
+          if (s.ToLower() == targetFolder.ToString().ToLower()){
+             isAlreadyUsed = true;
+          }
+       }
+       if (!isAlreadyUsed){
          targetPath = Path.Combine(currentPath,targetFolder.ToString());
        }
        currentPath = targetPath;
@@ -139,7 +147,7 @@ private int GetNodeDepth(TreeViewItem item)
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
       string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
       if (path == string.Empty){return;}
-      NavPathTB.Text = currentPath = path;
+      rootPath = NavPathTB.Text = currentPath = path;
       TraversePath(currentPath);
     }
        
