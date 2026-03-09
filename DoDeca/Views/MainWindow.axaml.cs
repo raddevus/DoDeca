@@ -42,8 +42,10 @@ Console.WriteLine($"{specFolders}");
            // e.Handled = true;
        }
    }
+   string currentPath = string.Empty;
     private void NavigateToPath(){
-      TraversePath(NavPathTB.Text);
+       currentPath = NavPathTB.Text;
+      TraversePath(currentPath);
     }
 
    private void TraversePath(string path){
@@ -60,8 +62,13 @@ Console.WriteLine($"{specFolders}");
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
        var targetFolder = (sender as TreeView)?.SelectedItem as Folder;
+       var parentFolder = targetFolder;
        Console.WriteLine($"{targetFolder}");
-       var targetPath = Path.Combine((QuickLinksLB.SelectedItem as FolderData).folderPath,targetFolder.ToString()); 
+       var targetPath = string.Empty;
+       if (!currentPath.Contains(targetFolder.ToString())){
+         targetPath = Path.Combine(currentPath,targetFolder.ToString());
+       }
+       currentPath = targetPath;
        Console.WriteLine($"targetPath: {targetPath}");
        Finder f = new();
        try{
@@ -83,7 +90,8 @@ Console.WriteLine($"{specFolders}");
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
       string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
       if (path == string.Empty){return;}
-      TraversePath(path);
+      currentPath = path;
+      TraversePath(currentPath);
     }
        
     
