@@ -10,6 +10,7 @@ using Models.NewLibre;
 using System.Collections.ObjectModel;
 using DoDeca.ViewModels;
 using System.IO;
+using System.Linq;
 
 namespace DoDeca.Views;
 
@@ -37,6 +38,10 @@ Console.WriteLine($"{specFolders}");
           Console.WriteLine($"foldername: {fx.folderName}");
           QuickLinksLB.Items.Add(fx);
        }
+          NavPathTB.Text = fd.FirstOrDefault(a => a.folderName == "UserProfile")?.folderPath ?? string.Empty;
+      if (NavPathTB.Text != string.Empty){
+         NavigateToPath();
+      }
     }
 
     private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
@@ -82,6 +87,7 @@ private int GetNodeDepth(TreeViewItem item)
        }
    }
    string currentPath = string.Empty;
+
     private void NavigateToPath(){
        currentPath = NavPathTB.Text;
        if (!Directory.Exists(currentPath)){
