@@ -17,6 +17,7 @@ namespace DoDeca.Views;
 public partial class MainWindow : Window
 {
    string rootPath = string.Empty;
+   int nodeDepth = 0;
    public MainWindow()
     {
         InitializeComponent();
@@ -55,6 +56,7 @@ Console.WriteLine($"{specFolders}");
 
        var data = treeViewItem.DataContext;
        int depth = GetNodeDepth(treeViewItem);
+       nodeDepth = depth;
 
 
        Console.WriteLine($"Clicked node: {data}, depth: {depth}");
@@ -110,10 +112,15 @@ private int GetNodeDepth(TreeViewItem item)
    }
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
+       if (nodeDepth == 0){
+          currentPath = rootPath;
+       }
+
        var targetFolder = (sender as TreeView)?.SelectedItem as Folder;
        var parentFolder = targetFolder;
        Console.WriteLine($"{targetFolder}");
        var targetPath = string.Empty;
+       
        var allPathParts = currentPath.Split(Path.DirectorySeparatorChar);
        var isAlreadyUsed = false;
        foreach (string s in allPathParts){
