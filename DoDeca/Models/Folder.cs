@@ -26,10 +26,8 @@ public class Folder
      if (obj == null || GetType() != obj.GetType())
          return false;
 
-     // Typecast the object to Person
      Folder other = (Folder)obj;
 
-     // Compare the properties to define equality
      return Title == other.Title;
  }
 }
