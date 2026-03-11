@@ -133,10 +133,10 @@ private int GetNodeDepth(TreeViewItem item)
           foreach (string fn in allDirs){
             Console.WriteLine(fn);
             var node = new Node(){
-               Name = targetNode.Name,
+               Name = fn,
                Path = targetPath};
             if (!targetNode.Children.Contains(node)){
-               Console.WriteLine($"Has {node.Children.Count}. It doesn't contain folder!?");
+               Console.WriteLine($"Has {node.Children?.Count}. It doesn't contain folder!?");
                targetNode.Children.Add(node);
             }
           }
