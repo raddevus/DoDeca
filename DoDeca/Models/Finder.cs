@@ -4,24 +4,28 @@ using System.Text.Json;
 using System.IO;
 
 namespace Models.NewLibre;
+
 public class Finder{
    
-   public List<string> GetFileInfo(string targetPath){
+   public List<Tuple<FileAttributes, string>> GetFileInfo(string targetPath){
+
       DirectoryInfo di = new(targetPath);
-      List<string> allDirs = new();
+      List<Tuple<FileAttributes,string>> allItems = new();
+      
       foreach (FileSystemInfo entry in di.EnumerateFileSystemInfos()) 
      { 
        if (entry.Attributes == FileAttributes.Directory) 
        {
-          allDirs.Add(entry.Name);
+          allItems.Add(new Tuple<FileAttributes, string>(FileAttributes.Directory,entry.Name));
 
            Console.WriteLine($"dir =>  {entry.Name}"); continue; 
         } 
+       allItems.Add(new Tuple<FileAttributes, string>(FileAttributes.Normal, entry.Name));
        Console.WriteLine($"file => {entry.Name}"); 
        
     }
-      allDirs.Sort();
-      return allDirs;
+      allItems.Sort();
+      return allItems;
    }
        public String GetSpecialFolders(){
         Environment.SpecialFolder[] allSpecialFolders = (Environment.SpecialFolder[])Enum.GetValues(typeof(Environment.SpecialFolder));

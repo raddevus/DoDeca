@@ -108,10 +108,10 @@ private int GetNodeDepth(TreeViewItem item)
        Console.WriteLine(path);
        Finder f = new();
        var allDirs = f.GetFileInfo(path);
-       foreach (string fn in allDirs){
+       foreach (Tuple<FileAttributes, string>fn in allDirs){
           vm.AllNodes.Add(new Node(){
-                Name = fn.ToString(),
-                IsFolder = true,
+                Name = fn.Item2.ToString(),
+                IsFolder = fn.Item1 == FileAttributes.Directory ? true: false,
                 Path = path});
        }
    }
@@ -119,6 +119,13 @@ private int GetNodeDepth(TreeViewItem item)
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
 
        var targetNode = (sender as TreeView)?.SelectedItem as Node;
+       // If it's not a folder (it's a file) nothing more to do
+       if (!targetNode?.IsFolder ?? false){return;}
+       // Check to see if the targetNode already has Children
+       // because if it does then it has already been traversed
+       // and we need to remove the Children so they aren't
+       // added twice
+       if (targetNode?.Children?.Count > 0){ targetNode.Children.Clear();}
        var parentFolder = targetNode.Path;
        Console.WriteLine($"{targetNode}");
        var targetPath = string.Empty;
@@ -130,10 +137,12 @@ private int GetNodeDepth(TreeViewItem item)
        NavPathTB.Text = currentPath = targetPath;
        try{
           var allDirs = f.GetFileInfo(targetPath);
-          foreach (string fn in allDirs){
+          Console.WriteLine($"allDirs.Count : {allDirs.Count}");
+          foreach (Tuple<FileAttributes, string> fn in allDirs){
             Console.WriteLine(fn);
             var node = new Node(){
-               Name = fn,
+               IsFolder = fn.Item1 == FileAttributes.Directory ? true: false,
+               Name = fn.Item2,
                Path = targetPath};
             if (!targetNode.Children.Contains(node)){
                Console.WriteLine($"Has {node.Children?.Count}. It doesn't contain folder!?");
