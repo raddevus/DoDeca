@@ -25,10 +25,11 @@
     </Grid.RowDefinitions>
 
     <!-- New panel for the TextBox and Label -->
-    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
-        <Label Content="Go:" Margin="0,0,5,0" VerticalAlignment="Center"/>
-        <TextBox Width="400" Name="NavPathTB" KeyDown="OnTextBoxKeyDown" />
-    </StackPanel>
+    <Grid ColumnDefinitions="Auto, 8*" Margin="10">
+
+        <Label Content="Go:" Grid.Column="0" VerticalAlignment="Center"/>
+           <TextBox Name="NavPathTB" KeyDown="OnTextBoxKeyDown" Grid.Column="1"/>
+           </Grid>
 
     <!-- Original Grid with SplitterGrid -->
     <Grid Grid.Row="1" ColumnDefinitions="Auto,4,*">
