@@ -104,7 +104,7 @@ private int GetNodeDepth(TreeViewItem item)
    private void TraversePath(string path){
 
        var vm = (MainWindowViewModel)DataContext;
-       vm.Folders.Clear();
+       vm.AllNodes.Clear();
        Console.WriteLine(path);
        Finder f = new();
        var allDirs = f.GetFileInfo(path);
