@@ -117,25 +117,13 @@ private int GetNodeDepth(TreeViewItem item)
    }
 
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
-       if (nodeDepth == 0){
-          currentPath = rootPath;
-       }
 
-       var targetFolder = (sender as TreeView)?.SelectedItem as Folder;
-       var parentFolder = targetFolder;
-       Console.WriteLine($"{targetFolder}");
+       var targetNode = (sender as TreeView)?.SelectedItem as Node;
+       var parentFolder = targetNode.Path;
+       Console.WriteLine($"{targetNode}");
        var targetPath = string.Empty;
        
-       var allPathParts = currentPath.Split(Path.DirectorySeparatorChar);
-       var isAlreadyUsed = false;
-       foreach (string s in allPathParts){
-          if (s.ToLower() == targetFolder.ToString().ToLower()){
-             isAlreadyUsed = true;
-          }
-       }
-       if (!isAlreadyUsed){
-         targetPath = Path.Combine(currentPath,targetFolder.ToString());
-       }
+       targetPath = Path.Combine(parentFolder,targetNode.ToString());
        currentPath = targetPath;
        Console.WriteLine($"targetPath: {targetPath}");
        Finder f = new();
@@ -144,10 +132,12 @@ private int GetNodeDepth(TreeViewItem item)
           var allDirs = f.GetFileInfo(targetPath);
           foreach (string fn in allDirs){
             Console.WriteLine(fn);
-            var folder = new Folder(fn);
-            if (!targetFolder.SubItems.Contains(folder)){
-               Console.WriteLine($"Has {targetFolder.SubItems.Count}. It doesn't contain folder!?");
-               targetFolder.SubItems.Add(folder);
+            var node = new Node(){
+               Name = targetNode.Name,
+               Path = targetPath};
+            if (!targetNode.Children.Contains(node)){
+               Console.WriteLine($"Has {node.Children.Count}. It doesn't contain folder!?");
+               targetNode.Children.Add(node);
             }
           }
        }
