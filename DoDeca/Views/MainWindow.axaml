@@ -52,10 +52,10 @@
                       Cursor="SizeWestEast"/>
 
         <Grid Grid.Column="2">
-            <TreeView Name="FileTree" ItemsSource="{Binding Folders}" SelectionChanged="TviClick">
+            <TreeView Name="FileTree" ItemsSource="{Binding AllNodes}" SelectionChanged="TviClick">
                 <TreeView.ItemTemplate>
-                    <TreeDataTemplate ItemsSource="{Binding SubItems}">
-                        <TextBlock Text="{Binding Title}"/>
+                    <TreeDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Name}"/>
                     </TreeDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>

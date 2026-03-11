@@ -8,4 +8,5 @@ public partial class MainWindowViewModel : ViewModelBase
 {
     public string Greeting { get; } = "Welcome to Avalonia!";
     public ObservableCollection<Folder> Folders { get;set; } = new();
+    public ObservableCollection<Node> AllNodes{get;set;} = new();
 }
