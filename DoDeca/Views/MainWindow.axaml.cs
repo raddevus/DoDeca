@@ -109,7 +109,10 @@ private int GetNodeDepth(TreeViewItem item)
        Finder f = new();
        var allDirs = f.GetFileInfo(path);
        foreach (string fn in allDirs){
-          vm.Folders.Add(new Folder(fn));
+          vm.AllNodes.Add(new Node(){
+                Name = fn.ToString(),
+                IsFolder = true,
+                Path = path});
        }
    }
 
