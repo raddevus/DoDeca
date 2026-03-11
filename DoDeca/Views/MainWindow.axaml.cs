@@ -57,7 +57,7 @@ Console.WriteLine($"{specFolders}");
        var data = treeViewItem.DataContext;
        int depth = GetNodeDepth(treeViewItem);
        nodeDepth = depth;
-
+treeViewItem.IsExpanded = true ;
 
        Console.WriteLine($"Clicked node: {data}, depth: {depth}");
    }
