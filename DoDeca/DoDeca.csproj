@@ -10,6 +10,9 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
+    <None Include="Assets\FiraCode\**">
+       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\file.png">
        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
