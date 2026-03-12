@@ -2,7 +2,9 @@ using Avalonia;
 using Avalonia.Input;
 using Avalonia.Controls;
 using Avalonia.Interactivity;  // Adds items necessary for event handlers
+using Avalonia.Media;
 using Avalonia.VisualTree;
+using Avalonia.Styling;
 using System;
 using System.Text.Json;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ public partial class MainWindow : Window
 {
    string rootPath = string.Empty;
    int nodeDepth = 0;
+   public static FileSystemColors FileSysColors;
    public MainWindow()
     {
         InitializeComponent();
@@ -27,10 +30,13 @@ public partial class MainWindow : Window
     InputElement.PointerReleasedEvent,
     (_, e) => Console.WriteLine($"PointerReleased handled={e.Handled} source={e.Source}"),
     RoutingStrategies.Bubble); 
+      InitThemeChangeHandler();
+
     }
 
     protected override void OnOpened(EventArgs e){
        base.OnOpened(e);
+       CheckThemeVariant();
        Finder f = new();
        var specFolders = f.GetSpecialFolders();
 Console.WriteLine($"{specFolders}");
@@ -45,6 +51,37 @@ Console.WriteLine($"{specFolders}");
          NavigateToPath();
       }
     }
+
+   private void CheckThemeVariant(){
+       Console.WriteLine($"theme: {ActualThemeVariant}"); 
+      if (ActualThemeVariant == ThemeVariant.Dark)
+      {
+         FileSysColors = new(Brushes.Orange, Brushes.Yellow);
+      }
+      else
+      {
+         FileSysColors = new (Brushes.Blue, Brushes.Green);
+      }
+    }
+
+   private void InitThemeChangeHandler(){
+       if (Application.Current == null){return;}
+          Application.Current.ActualThemeVariantChanged += (s, e) =>
+         {
+                Console.WriteLine($"ThemeVariant: {Application.Current.ActualThemeVariant}"); 
+                CheckThemeVariant();
+             if (Application.Current.ActualThemeVariant == ThemeVariant.Dark)
+             { 
+               FileSysColors = new(Brushes.Orange, Brushes.Yellow);
+             }
+             else
+             {
+               FileSysColors = new (Brushes.Blue, Brushes.Green);
+             }
+             NavigateToPath();
+         };
+   }
+
 
     private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
    {
