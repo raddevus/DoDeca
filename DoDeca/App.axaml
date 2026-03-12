@@ -1,5 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:zz="using:DoDeca.Views"
              x:Class="DoDeca.App"
              xmlns:local="using:DoDeca"
              RequestedThemeVariant="Default">
@@ -8,7 +9,10 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+    <Application.Resources>
+       <zz:StorageTypeToColorConverter x:Key="StorageTypeToColorConverter"/>
+   </Application.Resources>
+ 
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
