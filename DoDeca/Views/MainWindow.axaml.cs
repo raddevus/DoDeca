@@ -111,7 +111,7 @@ private int GetNodeDepth(TreeViewItem item)
        foreach (Tuple<FileAttributes, string>fn in allDirs){
           vm.AllNodes.Add(new Node(){
                 Name = fn.Item2.ToString(),
-                IsFolder = fn.Item1 == FileAttributes.Directory ? true: false,
+                StoreType = fn.Item1 == FileAttributes.Directory ? StorageType.Directory: StorageType.File,
                 Path = path});
        }
    }
@@ -120,7 +120,7 @@ private int GetNodeDepth(TreeViewItem item)
 
        var targetNode = (sender as TreeView)?.SelectedItem as Node;
        // If it's not a folder (it's a file) nothing more to do
-       if (!targetNode?.IsFolder ?? false){return;}
+       if (targetNode?.StoreType == StorageType.File){return;}
        // Check to see if the targetNode already has Children
        // because if it does then it has already been traversed
        // and we need to remove the Children so they aren't
@@ -141,7 +141,7 @@ private int GetNodeDepth(TreeViewItem item)
           foreach (Tuple<FileAttributes, string> fn in allDirs){
             Console.WriteLine(fn);
             var node = new Node(){
-               IsFolder = fn.Item1 == FileAttributes.Directory ? true: false,
+               StoreType = fn.Item1 == FileAttributes.Directory ? StorageType.Directory : StorageType.File,
                Name = fn.Item2,
                Path = targetPath};
             if (!targetNode.Children.Contains(node)){
