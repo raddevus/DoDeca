@@ -12,16 +12,18 @@ public class Finder{
       DirectoryInfo di = new(targetPath);
       List<Tuple<FileAttributes,string>> allItems = new();
       
-      foreach (FileSystemInfo entry in di.EnumerateFileSystemInfos()) 
+      foreach (var entry in di.EnumerateFileSystemInfos()) 
      { 
-       if (entry.Attributes == FileAttributes.Directory) 
+       if (entry is DirectoryInfo) 
        {
           allItems.Add(new Tuple<FileAttributes, string>(FileAttributes.Directory,entry.Name));
 
            Console.WriteLine($"dir =>  {entry.Name}"); continue; 
-        } 
-       allItems.Add(new Tuple<FileAttributes, string>(FileAttributes.Normal, entry.Name));
-       Console.WriteLine($"file => {entry.Name}"); 
+        }
+        if (entry is FileInfo){
+          allItems.Add(new Tuple<FileAttributes, string>(FileAttributes.Normal, entry.Name));
+           Console.WriteLine($"file => {entry.Name}"); 
+        }
        
     }
       allItems.Sort();
