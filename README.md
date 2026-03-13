@@ -12,7 +12,8 @@ But, DoDeca runs on all 3 Major OSes (Linux, macOS, Win)
 - [2026-03-12] [ ] As a user I want to be able to delete 1 or more folders permanently 
 - [2026-03-13] [ ] As a user I want the **annoying** scrollbar autohide to be turned off - make sure scrollbars are always expanded in the treeview
 - [2026-03-13] [ X ] Fix the bug on Windows when root is reached (C:) seems to fail [2026-03-13] 
-- [2026-03-13] [ X ] Fix the bug on Linux where it seems root folders are seen as files for some reason. [2026-03-13] - Was using FileAttributes, now using type returned by `EnumerateFileInfos()` 
+- [2026-03-13] [ X ] Fix the bug on Linux where it seems root folders are seen as files for some reason. [2026-03-13] - Was using FileAttributes, now using type returned by `EnumerateFileInfos()`
+- [ 2026-03-13] [ ] As a user I want the FileTree view to scroll to the top when I type in a path and load a folder
 
 ### Dark Mode Snapshot 
 <img width="1208" height="788" alt="image" src="https://github.com/user-attachments/assets/17d2133a-1c37-4613-814e-2e6637554f82" />
