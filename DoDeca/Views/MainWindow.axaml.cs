@@ -82,11 +82,22 @@ Console.WriteLine($"{specFolders}");
          };
    }
    private async void GoUpOneFolder(object? sender, RoutedEventArgs e){
-         var splitPaths = NavPathTB.Text.Split(Path.DirectorySeparatorChar, StringSplitOptions.RemoveEmptyEntries);
+         string navPath = NavPathTB.Text; 
+         var splitPaths = navPath.Split(Path.DirectorySeparatorChar, StringSplitOptions.RemoveEmptyEntries);
+         if (splitPaths != null && splitPaths.Length > 0){
          Console.WriteLine($"splitPaths {splitPaths?.Length} : {splitPaths?[0] ?? ""}");
-         
+          
          Console.WriteLine(string.Join(Path.DirectorySeparatorChar, splitPaths));
-         
+          var toBeRemoved = splitPaths[splitPaths.Length-1];
+          var lastIdx = navPath.LastIndexOf(toBeRemoved);
+          var finalPath = lastIdx >= 0 ? navPath.Remove(lastIdx,toBeRemoved.Length) : navPath;
+          if (finalPath.Length > 1){
+             finalPath = finalPath.TrimEnd(Path.DirectorySeparatorChar);
+          }
+          NavPathTB.Text = finalPath;
+          NavigateToPath();
+
+         } 
    }
 
     private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
