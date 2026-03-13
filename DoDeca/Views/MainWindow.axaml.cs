@@ -97,7 +97,7 @@ Console.WriteLine($"{specFolders}");
           if (finalPath.Length > 1){
           finalPath = finalPath.TrimEnd(Path.DirectorySeparatorChar);
           }
-          if (finalPath.Length == 2 && finalPath.Contains(Path.PathSeparator)){ 
+          if (finalPath.Length == 2 && finalPath.Contains(':')){ 
              finalPath = Path.EndsInDirectorySeparator(finalPath) ? finalPath : finalPath + Path.DirectorySeparatorChar;
           }
           NavPathTB.Text = finalPath;
