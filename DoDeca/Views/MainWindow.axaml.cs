@@ -90,9 +90,11 @@ Console.WriteLine($"{specFolders}");
          Console.WriteLine(string.Join(Path.DirectorySeparatorChar, splitPaths));
           var toBeRemoved = splitPaths[splitPaths.Length-1];
           var lastIdx = navPath.LastIndexOf(toBeRemoved);
-          var finalPath = lastIdx >= 0 ? navPath.Remove(lastIdx,toBeRemoved.Length) : navPath;
-
-          if (finalPath.Length > 1){
+          var finalPath = lastIdx >= 1 ? navPath.Remove(lastIdx,toBeRemoved.Length) : navPath;
+          if (splitPaths?.Length == 1 && finalPath.Contains(Path.PathSeparator)){
+             Console.WriteLine($"finalPath.Length: {finalPath.Length}  finalPath : {finalPath}");
+          }
+          if (finalPath.Length > 1 && splitPaths?.Length > 1){
           finalPath = finalPath.TrimEnd(Path.DirectorySeparatorChar);
           }
           NavPathTB.Text = finalPath;
