@@ -92,10 +92,8 @@ Console.WriteLine($"{specFolders}");
           var lastIdx = navPath.LastIndexOf(toBeRemoved);
           var finalPath = lastIdx >= 0 ? navPath.Remove(lastIdx,toBeRemoved.Length) : navPath;
 
-          if (toBeRemoved.Length != 1 && !finalPath.Contains(Path.PathSeparator)){
-             if (finalPath.Length > 1){
-             finalPath = finalPath.TrimEnd(Path.DirectorySeparatorChar);
-             }
+          if (finalPath.Length > 1){
+          finalPath = finalPath.TrimEnd(Path.DirectorySeparatorChar);
           }
           NavPathTB.Text = finalPath;
           NavigateToPath();
