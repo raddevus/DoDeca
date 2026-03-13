@@ -3,7 +3,7 @@ Why? Because I don't like Finder.  It's terrible. <br>
 But, DoDeca runs on all 3 Major OSes (Linux, macOS, Win)
 
 #### Backlog
-- [2026-03-12] [ ] As a user I want to move up one directory by clicking a button / link - Add "Up One Directory" button
+- [2026-03-12] [ X ] As a user I want to move up one directory by clicking a button / link - Add "Up One Directory" button [2026-03-13]
 - [2026-03-11] [ X ] As a user I want colors to change so things are properly visible when Dark / Light mode [2026-03-12]
 - [2026-03-12] [ ] As a user I want a unique icon to identify the app
 - [2026-03-12] [ ] As a user I want to be able to select & copy one or more files to another location
