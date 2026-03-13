@@ -81,7 +81,13 @@ Console.WriteLine($"{specFolders}");
              NavigateToPath();
          };
    }
-
+   private async void GoUpOneFolder(object? sender, RoutedEventArgs e){
+         var splitPaths = NavPathTB.Text.Split(Path.DirectorySeparatorChar, StringSplitOptions.RemoveEmptyEntries);
+         Console.WriteLine($"splitPaths {splitPaths?.Length} : {splitPaths?[0] ?? ""}");
+         
+         Console.WriteLine(string.Join(Path.DirectorySeparatorChar, splitPaths));
+         
+   }
 
     private void OnTreePointerPressed(object? sender, PointerPressedEventArgs e)
    {
