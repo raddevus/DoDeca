@@ -159,6 +159,7 @@ private int GetNodeDepth(TreeViewItem item)
            NavigateToPath();
            // Optionally, you may want to suppress the key press event
            // e.Handled = true;
+            fileTreeScrollViewer?.Offset = new Vector(0, 0);
        }
    }
    string currentPath = string.Empty;
@@ -234,10 +235,8 @@ private int GetNodeDepth(TreeViewItem item)
       rootPath = NavPathTB.Text = currentPath = path;
       TraversePath(currentPath);
       Console.WriteLine($" ####### -- {fileTreeScrollViewer?.GetType()  } -- #####");
-      if (fileTreeScrollViewer != null){
-         Console.WriteLine("Got the treeview - scrollview....");
-         fileTreeScrollViewer?.Offset = new Vector(0, 0);
-      }
+      Console.WriteLine("Got the treeview - scrollview....");
+      fileTreeScrollViewer?.Offset = new Vector(0, 0);
     }
        
     
