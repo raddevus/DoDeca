@@ -21,6 +21,8 @@ public partial class MainWindow : Window
    string rootPath = string.Empty;
    int nodeDepth = 0;
    public static FileSystemColors FileSysColors;
+   private ScrollViewer fileTreeScrollViewer = null;
+   
    public MainWindow()
     {
         InitializeComponent();
@@ -46,20 +48,17 @@ Console.WriteLine($"{specFolders}");
           Console.WriteLine($"foldername: {fx.folderName}");
           QuickLinksLB.Items.Add(fx);
 
-var _scrollViewer = FileTree
-        .GetVisualDescendants()
-        .OfType<ScrollViewer>()
-        .FirstOrDefault();
-
-          if (_scrollViewer != null){
-             Console.WriteLine("############## got it###################");
-          }
 
        }
           NavPathTB.Text = fd.FirstOrDefault(a => a.folderName == "UserProfile")?.folderPath ?? string.Empty;
       if (NavPathTB.Text != string.Empty){
          NavigateToPath();
       }
+
+   var fileTreeScrollViewer = FileTree
+           .GetVisualDescendants()
+           .OfType<ScrollViewer>()
+           .FirstOrDefault();
     }
 
    private void CheckThemeVariant(){
