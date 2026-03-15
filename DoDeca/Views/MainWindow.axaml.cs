@@ -183,7 +183,7 @@ private int GetNodeDepth(TreeViewItem item)
           vm.AllNodes.Add(new Node(){
                 Name = fn.Item2.ToString(),
                 StoreType = fn.Item1 == FileAttributes.Directory ? StorageType.Directory: StorageType.File,
-                IconSource = (fn.Item1 == FileAttributes.Directory) ? "avares://DoDeca/Assets/folder.png" : "avares://DoDeca/Assets/file.png", 
+                IconSource = (fn.Item1 == FileAttributes.Directory) ? "📁" : "📝", 
                 Path = path});
        }
    }
@@ -215,7 +215,7 @@ private int GetNodeDepth(TreeViewItem item)
             var node = new Node(){
                StoreType = fn.Item1 == FileAttributes.Directory ? StorageType.Directory : StorageType.File,
                Name = fn.Item2,
-                IconSource = (fn.Item1 == FileAttributes.Directory) ? "avares://DoDeca/Assets/folder.png" : "avares://DoDeca/Assets/file.png", 
+                IconSource = (fn.Item1 == FileAttributes.Directory) ? "📁" : "📝", 
                Path = targetPath};
             Console.WriteLine(node.IconSource);
             if (!targetNode.Children.Contains(node)){
