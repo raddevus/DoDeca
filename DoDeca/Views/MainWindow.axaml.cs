@@ -236,7 +236,7 @@ private int GetNodeDepth(TreeViewItem item)
    {
        if (FileTree.SelectedItem is Node node)
        {
-           Console.WriteLine($"path: {node.Path}");
+           Console.WriteLine($"path: {Path.Combine(node.Path, node.ToString())}");
        }
    }
 
