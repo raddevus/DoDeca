@@ -18,6 +18,7 @@ But, DoDeca runs on all 3 Major OSes (Linux, macOS, Win)
 - [ 2026-03-14] [ ] As a user I want to add one or more custom quicklinks (paths) which appear in the panel on the left when the app runs
 - [ 2026-03-15] [ ] Add ContextMenu to TreeView to include additional commands (copy, paste, Add Folder To QuickList, etc.)
 - [2026-03-15] [ ] Bug - If user types in NavPathTB and includes a trailing slash it causes a problem
+### Light Mode Snapshot (Displays Folder Icons - on macOS)
 
 ### Dark Mode Snapshot 
 <img width="1208" height="788" alt="image" src="https://github.com/user-attachments/assets/17d2133a-1c37-4613-814e-2e6637554f82" />
