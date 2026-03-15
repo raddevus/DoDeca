@@ -55,10 +55,11 @@ Console.WriteLine($"{specFolders}");
          NavigateToPath();
       }
 
-   var fileTreeScrollViewer = FileTree
+   fileTreeScrollViewer = FileTree
            .GetVisualDescendants()
            .OfType<ScrollViewer>()
            .FirstOrDefault();
+   Console.WriteLine($" ####### - {fileTreeScrollViewer?.GetType()} - #######");
     }
 
    private void CheckThemeVariant(){
@@ -232,6 +233,11 @@ private int GetNodeDepth(TreeViewItem item)
       if (path == string.Empty){return;}
       rootPath = NavPathTB.Text = currentPath = path;
       TraversePath(currentPath);
+      Console.WriteLine($" ####### -- {fileTreeScrollViewer?.GetType()  } -- #####");
+      if (fileTreeScrollViewer != null){
+         Console.WriteLine("Got the treeview - scrollview....");
+         fileTreeScrollViewer?.Offset = new Vector(0, 0);
+      }
     }
        
     
