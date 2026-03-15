@@ -33,7 +33,6 @@ public partial class MainWindow : Window
     (_, e) => Console.WriteLine($"PointerReleased handled={e.Handled} source={e.Source}"),
     RoutingStrategies.Bubble); 
       InitThemeChangeHandler();
-
     }
 
     protected override void OnOpened(EventArgs e){
@@ -191,6 +190,10 @@ private int GetNodeDepth(TreeViewItem item)
     private async void TviClick(object? sender, SelectionChangedEventArgs e){
 
        var targetNode = (sender as TreeView)?.SelectedItem as Node;
+       Console.WriteLine($" **** got {targetNode?.IconSource}");
+       if (targetNode?.StoreType == StorageType.Directory){
+          targetNode?.IconSource = "📂";
+       }
        // If it's not a folder (it's a file) nothing more to do
        if (targetNode?.StoreType == StorageType.File){return;}
        // Check to see if the targetNode already has Children

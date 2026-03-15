@@ -64,8 +64,8 @@
     <TreeView.ItemTemplate>
         <TreeDataTemplate ItemsSource="{Binding Children}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding IconSource}" Width="16" Height="16" />
-                <TextBlock Text="{Binding Name}" 
+                <TextBlock Text="{Binding IconSource, Mode=TwoWay}" Padding="4,0,4,0" FontSize="24" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"
                            Foreground="{Binding StoreType, Converter={StaticResource StorageTypeToColorConverter}}"/>
             </StackPanel>
         </TreeDataTemplate>
