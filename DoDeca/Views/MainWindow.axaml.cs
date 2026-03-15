@@ -45,6 +45,16 @@ Console.WriteLine($"{specFolders}");
        foreach (var fx in fd){
           Console.WriteLine($"foldername: {fx.folderName}");
           QuickLinksLB.Items.Add(fx);
+
+var _scrollViewer = FileTree
+        .GetVisualDescendants()
+        .OfType<ScrollViewer>()
+        .FirstOrDefault();
+
+          if (_scrollViewer != null){
+             Console.WriteLine("############## got it###################");
+          }
+
        }
           NavPathTB.Text = fd.FirstOrDefault(a => a.folderName == "UserProfile")?.folderPath ?? string.Empty;
       if (NavPathTB.Text != string.Empty){
