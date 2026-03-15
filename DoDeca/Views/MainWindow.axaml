@@ -61,6 +61,12 @@
 
         <Grid Grid.Column="2">
         <TreeView Name="FileTree" ItemsSource="{Binding AllNodes}" SelectionChanged="TviClick">
+        <TreeView.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Copy (Path)"
+                      Click="CopyMenuItem_Click"/>
+        </ContextMenu>
+    </TreeView.ContextMenu>
     <TreeView.ItemTemplate>
         <TreeDataTemplate ItemsSource="{Binding Children}">
             <StackPanel Orientation="Horizontal">

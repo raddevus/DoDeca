@@ -232,6 +232,15 @@ private int GetNodeDepth(TreeViewItem item)
        }
     }
 
+    private void CopyMenuItem_Click(object? sender, RoutedEventArgs e)
+   {
+       if (FileTree.SelectedItem is Node node)
+       {
+           Console.WriteLine($"path: {node.Path}");
+       }
+   }
+
+
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
       string path = ((sender as ListBox)?.SelectedItem as FolderData)?.folderPath ?? string.Empty;
       if (path == string.Empty){return;}
