@@ -233,12 +233,12 @@ private int GetNodeDepth(TreeViewItem item)
     }
 
     private void CopyMenuItem_Click(object? sender, RoutedEventArgs e)
-   {
-       if (FileTree.SelectedItem is Node node)
-       {
-           Console.WriteLine($"path: {Path.Combine(node.Path, node.ToString())}");
-       }
-   }
+      {
+          if (FileTree.SelectedItem is Node node)
+          {
+              Console.WriteLine($"path: {Path.Combine(node.Path, node.ToString())}");
+          }
+      }
 
 
     private async void QuickLinkChanged(object? sender, RoutedEventArgs e){
