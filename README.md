@@ -2,22 +2,6 @@
 Why? Because I don't like Finder.  It's terrible. <br>
 But, DoDeca runs on all 3 Major OSes (Linux, macOS, Win)
 
-#### Backlog
-- [2026-03-12] [ X ] As a user I want to move up one directory by clicking a button / link - Add "Up One Directory" button [2026-03-13]
-- [2026-03-11] [ X ] As a user I want colors to change so things are properly visible when Dark / Light mode [2026-03-12]
-- [2026-03-12] [ ] As a user I want a unique icon to identify the app
-- [2026-03-12] [ ] As a user I want to be able to select & copy one or more files to another location
-- [2026-03-12] [ ] As a user I want to be able to copy one or more folders and all of their contents to another location
-- [2026-03-12] [ ] As a user I want to be able to delete 1 or more files permanently
-- [2026-03-12] [ ] As a user I want to be able to delete 1 or more folders permanently 
-- [2026-03-13] [ ] As a user I want the **annoying** scrollbar autohide to be turned off - make sure scrollbars are always expanded in the treeview
-- [2026-03-13] [ X ] Fix the bug on Windows when root is reached (C:) seems to fail [2026-03-13] 
-- [2026-03-13] [ X ] Fix the bug on Linux where it seems root folders are seen as files for some reason. [2026-03-13] - Was using FileAttributes, now using type returned by `EnumerateFileInfos()`
-- [2026-03-13] [ X ] As a user I want Folder icon to identify a folder & File icon to identify a file [2026-03-15]
-- [ 2026-03-13] [ X ] As a user I want the FileTree view to scroll to the top when I type in a path and load a folder [2026-03-15]
-- [ 2026-03-14] [ ] As a user I want to add one or more custom quicklinks (paths) which appear in the panel on the left when the app runs
-- [ 2026-03-15] [ ] Add ContextMenu to TreeView to include additional commands (copy, paste, Add Folder To QuickList, etc.)
-- [2026-03-15] [ ] Bug - If user types in NavPathTB and includes a trailing slash it causes a problem
 ### Light Mode Snapshot (Displays Folder Icons - on macOS)
 <img width="1414" height="778" alt="image" src="https://github.com/user-attachments/assets/147faa2c-d95c-423e-919a-36772dabc65e" />
 
